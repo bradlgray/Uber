@@ -60,6 +60,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         self.displayAlert("Sign Up Failed", message: errorString)
 
                     }
+                    
+                    if self.`switch`.on == true {
+                        self.performSegueWithIdentifier("loginDriver", sender: self)
+                    }
                 
                 } else {
                     self.performSegueWithIdentifier("loginRider", sender: self)
@@ -70,12 +74,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
             } else {
                 PFUser.logInWithUsernameInBackground(username.text!, password: password.text!) {
                     (user: PFUser?, error: NSError?) -> Void in
-                    if user != nil {
+                    if let user = user {
+                        
+                        if user["isDriver"]! as! Bool == true {
+                            self.performSegueWithIdentifier("loginDriver", sender: self)
+                        
+                        
+                    } else {
                         self.performSegueWithIdentifier("loginRider", sender: self)
+
+
+                        
+                        
+                    
+                        }
+                       
                     } else {
                         if let errorString = error?.userInfo["error"] as? String {
                             
                             self.displayAlert("Login Failed", message: errorString)
+                            
+                
                             
                         }
                     }
