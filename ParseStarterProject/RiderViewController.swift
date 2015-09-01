@@ -72,6 +72,8 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
                     if let objects = objects as? [PFObject] {
                         for object in objects {
                             
+                            
+                            
                              object.deleteInBackground()
                         }
                     }

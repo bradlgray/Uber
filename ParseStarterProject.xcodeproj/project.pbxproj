@@ -23,6 +23,7 @@
 		8F9B52B91B90B4D50021542B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F9B52B81B90B4D50021542B /* Launch Screen.storyboard */; };
 		8FAC7E4A1B92321200FFD137 /* RiderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAC7E491B92321200FFD137 /* RiderViewController.swift */; };
 		8FAC7E4C1B93F85700FFD137 /* DriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAC7E4B1B93F85700FFD137 /* DriverViewController.swift */; };
+		8FBFFD551B9526CF005699AE /* RequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBFFD541B9526CF005699AE /* RequestsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		8F9B52B81B90B4D50021542B /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8FAC7E491B92321200FFD137 /* RiderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderViewController.swift; sourceTree = "<group>"; };
 		8FAC7E4B1B93F85700FFD137 /* DriverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverViewController.swift; sourceTree = "<group>"; };
+		8FBFFD541B9526CF005699AE /* RequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				81BA814C1A49DA1800E65899 /* ViewController.swift */,
 				8FAC7E491B92321200FFD137 /* RiderViewController.swift */,
 				8FAC7E4B1B93F85700FFD137 /* DriverViewController.swift */,
+				8FBFFD541B9526CF005699AE /* RequestsViewController.swift */,
 				81BA814E1A49DA1800E65899 /* Main.storyboard */,
 				8F9B52B81B90B4D50021542B /* Launch Screen.storyboard */,
 				81BA81511A49DA1800E65899 /* Images.xcassets */,
@@ -221,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FBFFD551B9526CF005699AE /* RequestsViewController.swift in Sources */,
 				8FAC7E4C1B93F85700FFD137 /* DriverViewController.swift in Sources */,
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
 				8FAC7E4A1B92321200FFD137 /* RiderViewController.swift in Sources */,
