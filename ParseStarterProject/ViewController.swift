@@ -169,9 +169,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         if PFUser.currentUser()?.username != nil {
+            
+            if PFUser.currentUser()?["isDriver"]! as! Bool == true {
+                self.performSegueWithIdentifier("loginDriver", sender: self)
+            } else {
+            
             performSegueWithIdentifier("loginRider", sender: self)
-        }
-    }
 
+            
+            }
+}
 }
 
+
+
+
+
+
+
+}
