@@ -29,15 +29,21 @@ class RequestsViewController: UIViewController, CLLocationManagerDelegate {
                 if let objects = objects as? [PFObject] {
                     for object in objects {
                         
+                        var query = PFQuery(className:"riderRequest")
+                        query.getObjectInBackgroundWithId(object.objectId!) {
+                            (object: PFObject?, error: NSError?) -> Void in
+                            if error != nil {
+                                print(error)
+                            } else if let object = object {
                        object["driverResponded"] = PFUser.currentUser()!.username!
-                        object.save()
+                        object.saveInBackground()
                         
                         let requestCLLocation = CLLocation(latitude: self.requestLocation.latitude, longitude: self.requestLocation.longitude)
                         
                         CLGeocoder().reverseGeocodeLocation(requestCLLocation, completionHandler: { (placemarks, error) -> Void in
                             if error != nil {
                                 print(error)
-                            }
+                            } else {
                             if placemarks!.count > 0 {
                                 
                                 let pm = placemarks![0] as! CLPlacemark
@@ -49,13 +55,14 @@ class RequestsViewController: UIViewController, CLLocationManagerDelegate {
                                 mapItem.name = self.requestUsername
                                 
                                 
-                                var launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+                                var launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
                                 
                                 mapItem.openInMapsWithLaunchOptions(launchOptions)
                                 
                             } else {
                                 print("problems with the data received from geocoder")
                             }
+                                }
                             
                         })
                         
@@ -63,9 +70,9 @@ class RequestsViewController: UIViewController, CLLocationManagerDelegate {
                        
                         
                         
+                        }
                         
-                        
-                        
+                        }
                     }
                 }
             } else {
@@ -106,7 +113,7 @@ class RequestsViewController: UIViewController, CLLocationManagerDelegate {
         
         
 
-        // Do any additional setup after loading the view.
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -115,14 +122,5 @@ class RequestsViewController: UIViewController, CLLocationManagerDelegate {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -63,6 +63,7 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             riderRequestActive = false
             
             var query = PFQuery(className:"riderRequest")
+            if PFUser.currentUser()!.username != nil {
             query.whereKey("username", equalTo: PFUser.currentUser()!.username!)
             query.findObjectsInBackgroundWithBlock {
                 (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -89,7 +90,7 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
 
         }
     }
-    
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,6 +116,11 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         
        var query = PFQuery(className:"riderRequest")
         
+        if PFUser.currentUser()!.username != nil {
+        
+       // var username1 = PFUser.currentUser()!.username!
+        
+        //if username1 != nil {
          query.whereKey("username", equalTo: PFUser.currentUser()!.username!)
        
         
@@ -166,6 +172,8 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
                                                 let distanceMeters = userCLLocation.distanceFromLocation(driverCLLocation)
                                                 let distanceKM = distanceMeters / 1000
                                                 let roundedTwoDigitDistance = Double(round(distanceKM) * 10) / 10
+                                                
+                                                print(roundedTwoDigitDistance)
                             
                                                 self.callUber.setTitle("Driver is \(roundedTwoDigitDistance) km away", forState: UIControlState.Normal)
                                                 
@@ -204,6 +212,7 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
 
 
                                             }
+                            
                                         }
                                     }
                                 }
@@ -219,8 +228,8 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             }
         }
     
-    
         
+        }
         
         
         
@@ -255,6 +264,7 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if segue.identifier == "logOutRider" {
             PFUser.logOut()
                    }

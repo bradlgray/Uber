@@ -49,6 +49,9 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
         
         
         var query = PFQuery(className:"driverLocation")
+        
+        if PFUser.currentUser()!.username != nil {
+    
         query.whereKey("username", equalTo:PFUser.currentUser()!.username!)
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -157,7 +160,7 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
         }
         
     }
-
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -182,16 +185,16 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-
+print(cell.textLabel)
         var distanceDouble = Double(distances[indexPath.row])
-        
-        var roundedDistance = Double(round(distanceDouble * 10) / 10)
-        
-        
+       print(distanceDouble)
+        var roundedDistance = Double(round((distanceDouble * 10) / 10))
+        print(roundedDistance)
+        print(roundedDistance)
         
         cell.textLabel?.text = usernames[indexPath.row] +  " - " + String(roundedDistance) + " km away"
         
-        
+        print(roundedDistance)
 
         return cell
     }
@@ -200,6 +203,9 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
     
         override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             if segue.identifier == "logoutDriver" {
+                
+                navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: false)
+                
                 PFUser.logOut()
                 var currentUser = PFUser.currentUser()
                 
