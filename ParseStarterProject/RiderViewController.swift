@@ -42,7 +42,7 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             (success, error) -> Void in
             if (success) {
                 
-                
+                self.callUber.setTitle("cancel Uber", forState: UIControlState.Normal)
                 
                 
                 
@@ -63,7 +63,7 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             riderRequestActive = false
             
             var query = PFQuery(className:"riderRequest")
-            if PFUser.currentUser()!.username != nil {
+            
             query.whereKey("username", equalTo: PFUser.currentUser()!.username!)
             query.findObjectsInBackgroundWithBlock {
                 (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -90,7 +90,7 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
 
         }
     }
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,6 +136,8 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
                     
                     for object in objects {
                         
+                        print("riderRequest Found")
+                        
                         if let driverUserName = object["driverResponded"] {
                         
                             
@@ -153,12 +155,14 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
                                 
                                 if error == nil {
                                     // The find succeeded.
-                                    
+                                    print("succeeded")
                                     
                                     if let objects = objects as? [PFObject] {
                                         
                                         
                                         for object in objects {
+                                            
+                                            print(object)
                                             
                                              if let driverLocation = object["driverLocation"] as? PFGeoPoint {
                                                 
@@ -171,7 +175,9 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
                                               
                                                 let distanceMeters = userCLLocation.distanceFromLocation(driverCLLocation)
                                                 let distanceKM = distanceMeters / 1000
-                                                let roundedTwoDigitDistance = Double(round(distanceKM) * 10) / 10
+                                                
+                                                print(distanceKM)
+                                                let roundedTwoDigitDistance = Double(round(distanceKM * 10) / 10)
                                                 
                                                 print(roundedTwoDigitDistance)
                             

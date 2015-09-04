@@ -185,12 +185,12 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-print(cell.textLabel)
-        var distanceDouble = Double(distances[indexPath.row])
+
+        let distanceDouble = Double(distances[indexPath.row])
        print(distanceDouble)
-        var roundedDistance = Double(round((distanceDouble * 10) / 10))
+       let roundedDistance = Double(round(distanceDouble * 10) / 10)
         print(roundedDistance)
-        print(roundedDistance)
+       
         
         cell.textLabel?.text = usernames[indexPath.row] +  " - " + String(roundedDistance) + " km away"
         
